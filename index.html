@@ -1,0 +1,95 @@
+<div class="bg-slate-950 flex items-center justify-center min-h-screen p-4">
+
+  <!-- Outer Container with Ambient Glow -->
+  <div class="relative w-full max-w-md">
+    <div class="absolute -inset-1.5 bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-300 rounded-[32px] blur-2xl opacity-25"></div>
+
+    <!-- Main Card Body -->
+    <div class="relative bg-white rounded-[28px] shadow-2xl overflow-hidden border border-slate-100">
+      
+      <!-- Mercado Libre Brand Header Banner -->
+      <div class="bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 px-6 py-4 flex items-center justify-between border-b border-yellow-400/50">
+        <div class="flex items-center space-x-2.5">
+          <div class="p-1.5 bg-blue-900 rounded-xl shadow-md">
+            <svg class="w-5 h-5 text-yellow-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 17l-5-5 5-5" />
+              <path d="M18 17l-5-5 5-5" />
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-base font-black text-blue-950 tracking-tighter leading-none">mercado</span>
+            <span class="text-base font-black text-blue-950 tracking-tighter leading-none">libre</span>
+          </div>
+        </div>
+
+        <div class="flex items-center space-x-1.5 bg-blue-950/10 backdrop-blur-md px-3 py-1 rounded-full border border-blue-950/10">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span class="text-[11px] font-extrabold text-blue-950 uppercase tracking-wide">Sistema Oficial</span>
+        </div>
+      </div>
+
+      <div class="p-6">
+        <!-- Title -->
+        <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight text-center mb-5">
+          Indicaciones Del Sistema
+        </h2>
+
+        <!-- Alert Notification Box -->
+        <div class="mb-5 rounded-2xl bg-gradient-to-r from-red-500/10 via-rose-500/5 to-red-500/10 p-4 border border-red-500/20 shadow-sm flex items-start space-x-3.5">
+          <div class="shrink-0 p-2.5 bg-red-500 text-white rounded-2xl shadow-lg shadow-red-500/30 mt-0.5">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-extrabold text-sm text-red-950 tracking-tight mb-0.5">
+              ¡Estado del control de riesgos!
+            </h3>
+            <p class="text-xs font-semibold text-red-700/90 leading-tight">
+              Atención requerida para continuar con sus transacciones.
+            </p>
+          </div>
+        </div>
+
+        <!-- User Data & Message Panel -->
+        <div class="mb-6 rounded-2xl bg-slate-50/80 p-4 border border-slate-200/80 space-y-3">
+          <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-xl bg-white border border-slate-200 shadow-2xs">
+            <div class="w-6 h-6 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xs">
+              ID
+            </div>
+            <span class="font-bold text-slate-800 text-xs tracking-tight">Estimado miembro (5653980706)</span>
+          </div>
+
+          <p class="text-slate-600 text-xs leading-relaxed font-medium">
+            Dado que no retiró fondos según el plan de retiros a plazos ofrecido por el mercado libre, su cuenta está sujeta al control de riesgo del sistema. Debe verificar y desactivar dicho control antes de poder solicitar otro retiro.
+          </p>
+        </div>
+
+        <!-- Action Button -->
+        <button class="w-full relative group overflow-hidden rounded-2xl bg-yellow-400 p-0.5 shadow-xl shadow-yellow-400/40 active:scale-[0.98] transition-all duration-200">
+          <div class="w-full bg-gradient-to-r from-yellow-400 via-amber-300 to-yellow-400 py-4 rounded-[14px] text-center font-black text-blue-950 uppercase tracking-wider text-sm flex items-center justify-center space-x-2 group-hover:brightness-105 transition">
+            <span>confirmar</span>
+            <div class="p-1 rounded-lg bg-blue-950/10">
+              <svg class="w-4 h-4 text-blue-950 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </div>
+          </div>
+        </button>
+      </div>
+
+      <!-- Footer Info Bar -->
+      <div class="bg-slate-50 px-6 py-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-semibold text-slate-400">
+        <span>Seguridad Mercado Libre</span>
+        <span class="flex items-center gap-1">
+          <svg class="w-3.5 h-3.5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          Protegido
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+</div>
