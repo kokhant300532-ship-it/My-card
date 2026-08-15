@@ -34,6 +34,8 @@
         <select id="select-preset" class="w-full bg-slate-950 border border-amber-500/50 rounded-xl px-3 py-2 text-white font-medium focus:outline-none focus:border-amber-400">
           <option value="custom">-- Custom (စိတ်ကြိုက် ပြင်ဆင်မည်) --</option>
           <option value="risk" selected>Risk Control Warning (အနီရောင် သတိပေးချက်)</option>
+          <option value="bank_error">Bank Account Error (ဘဏ်အကောင့်အမှား သတိပေးချက်)</option>
+          <option value="bank_fixed">Bank Account Resolved (ဘဏ်အကောင့် ပြင်ဆင်မှု အောင်မြင်သည်)</option>
           <option value="verify">Account Verification (ဝါရောင် အကောင့်စစ်ဆေးရန်)</option>
           <option value="success">Withdrawal Success (အစိမ်းရောင် အောင်မြင်သည်)</option>
         </select>
@@ -298,6 +300,10 @@
     const saveDraftBtn = document.getElementById('save-draft-btn');
     const loadDraftBtn = document.getElementById('load-draft-btn');
 
+    // Icon SVG Templates
+    const warningSvg = `<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>`;
+    const successSvg = `<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>`;
+
     // Preset Data Store
     const presets = {
       risk: {
@@ -308,6 +314,24 @@
         message: "Dado que no retiró fondos según el plan de retiros a plazos ofrecido por el mercado libre, su cuenta está sujeta al control de riesgo del sistema. Debe verificar y desactivar dicho control antes de poder solicitar otro retiro.",
         btn: "confirmar",
         theme: "red"
+      },
+      bank_error: {
+        title: "Indicaciones Del Sistema",
+        alertTitle: "Error en la cuenta bancaria",
+        alertSub: "Tu solicitud se ha realizado correctamente; ahora vuelve a conectar tu cuenta bancaria e intenta de nuevo el proceso de retiro.",
+        userId: "5653980706",
+        message: "Mensaje detallado. Sus fondos han sido devueltos a la tienda. Debido a que la información de retiro es incorrecta, su cuenta del centro comercial se encuentra actualmente bajo control de riesgos y no se pueden realizar retiros.",
+        btn: "Retirarse exitosa",
+        theme: "red"
+      },
+      bank_fixed: {
+        title: "Indicaciones Del Sistema",
+        alertTitle: "Cuenta bancaria vinculada con éxito",
+        alertSub: "La información de su cuenta bancaria ha sido actualizada y verificada correctamente.",
+        userId: "5653980706",
+        message: "Se ha corregido y verificado con éxito la información de su cuenta bancaria. El control de riesgos sobre su cuenta ha sido desactivado y ya puede continuar realizando sus solicitudes de retiro normalmente.",
+        btn: "Solicitar Retiro",
+        theme: "emerald"
       },
       verify: {
         title: "Verificación de Cuenta",
@@ -367,16 +391,19 @@
       if (theme === 'red') {
         alertBox.className = "mb-5 rounded-2xl bg-gradient-to-r from-red-500/10 via-rose-500/5 to-red-500/10 p-4 border border-red-500/20 shadow-sm flex items-start space-x-3.5";
         alertIcon.className = "shrink-0 p-2.5 bg-red-500 text-white rounded-2xl shadow-lg shadow-red-500/30 mt-0.5";
+        alertIcon.innerHTML = warningSvg;
         cardAlertTitle.className = "font-extrabold text-sm text-red-950 tracking-tight mb-0.5";
         cardAlertSub.className = "text-xs font-semibold text-red-700/90 leading-tight";
       } else if (theme === 'amber') {
         alertBox.className = "mb-5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-yellow-500/5 to-amber-500/10 p-4 border border-amber-500/20 shadow-sm flex items-start space-x-3.5";
         alertIcon.className = "shrink-0 p-2.5 bg-amber-500 text-white rounded-2xl shadow-lg shadow-amber-500/30 mt-0.5";
+        alertIcon.innerHTML = warningSvg;
         cardAlertTitle.className = "font-extrabold text-sm text-amber-950 tracking-tight mb-0.5";
         cardAlertSub.className = "text-xs font-semibold text-amber-700/90 leading-tight";
       } else if (theme === 'emerald') {
         alertBox.className = "mb-5 rounded-2xl bg-gradient-to-r from-emerald-500/10 via-teal-500/5 to-emerald-500/10 p-4 border border-emerald-500/20 shadow-sm flex items-start space-x-3.5";
         alertIcon.className = "shrink-0 p-2.5 bg-emerald-500 text-white rounded-2xl shadow-lg shadow-emerald-500/30 mt-0.5";
+        alertIcon.innerHTML = successSvg;
         cardAlertTitle.className = "font-extrabold text-sm text-emerald-950 tracking-tight mb-0.5";
         cardAlertSub.className = "text-xs font-semibold text-emerald-700/90 leading-tight";
       }
