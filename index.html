@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mercado Libre - Indicaciones Del Sistema</title>
-  <!-- Tailwind CSS Script (ဒီလိုင်း ပါမှ ဒီဇိုင်းလှမှာဖြစ်ပါတယ်) -->
+  <title>Mercado Libre - Dynamic Card Customizer</title>
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
@@ -13,103 +13,225 @@
     }
   </style>
 </head>
-<body class="bg-slate-950 flex items-center justify-center min-h-screen p-4 sm:p-6">
+<body class="bg-slate-950 text-slate-100 min-h-screen p-4 md:p-8 flex flex-col items-center justify-center">
 
-  <!-- Outer Glow Container -->
-  <div class="relative w-full max-w-md">
-    <!-- Ambient Light Effect -->
-    <div class="absolute -inset-1.5 bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-300 rounded-[32px] blur-2xl opacity-25"></div>
-
-    <!-- Main Card Body -->
-    <div class="relative bg-white rounded-[28px] shadow-2xl overflow-hidden border border-slate-100">
-      
-      <!-- Top Mercado Libre Brand Header Banner -->
-      <div class="bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 px-6 py-4 flex items-center justify-between border-b border-yellow-400/50">
-        <div class="flex items-center space-x-2.5">
-          <!-- Logo Badge -->
-          <div class="p-1.5 bg-blue-900 rounded-xl shadow-md">
-            <svg class="w-5 h-5 text-yellow-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M11 17l-5-5 5-5" />
-              <path d="M18 17l-5-5 5-5" />
-            </svg>
-          </div>
-          <div class="flex flex-col">
-            <span class="text-base font-black text-blue-950 tracking-tighter leading-none">mercado</span>
-            <span class="text-base font-black text-blue-950 tracking-tighter leading-none">libre</span>
-          </div>
-        </div>
-
-        <div class="flex items-center space-x-1.5 bg-blue-950/10 backdrop-blur-md px-3 py-1 rounded-full border border-blue-950/10">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span class="text-[11px] font-extrabold text-blue-950 uppercase tracking-wide">Sistema Oficial</span>
-        </div>
+  <div class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    
+    <!-- Left Column: Customization Controls Panel -->
+    <div class="lg:col-span-5 bg-slate-900 border border-slate-800 p-6 rounded-3xl shadow-xl space-y-5">
+      <div class="border-b border-slate-800 pb-3">
+        <h1 class="text-xl font-bold text-amber-400">Card Design Customizer</h1>
+        <p class="text-xs text-slate-400 mt-1">အောက်ပါ စနစ်မှတစ်ဆင့် ပုံစံနှင့် စာသားများကို စိတ်ကြိုက် ပြင်ဆင်ပါ</p>
       </div>
 
-      <div class="p-6">
-        <!-- Main Title -->
-        <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight text-center mb-5">
-          Indicaciones Del Sistema
-        </h2>
-
-        <!-- Alert Notification Card -->
-        <div class="mb-5 rounded-2xl bg-gradient-to-r from-red-500/10 via-rose-500/5 to-red-500/10 p-4 border border-red-500/20 shadow-sm flex items-start space-x-3.5">
-          <div class="shrink-0 p-2.5 bg-red-500 text-white rounded-2xl shadow-lg shadow-red-500/30 mt-0.5">
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-            </svg>
-          </div>
-          <div>
-            <h3 class="font-extrabold text-sm text-red-950 tracking-tight mb-0.5">
-              ¡Estado del control de riesgos!
-            </h3>
-            <p class="text-xs font-semibold text-red-700/90 leading-tight">
-              Atención requerida para continuar con sus transacciones.
-            </p>
-          </div>
+      <!-- Controls Form -->
+      <div class="space-y-4 text-sm">
+        
+        <!-- Header Subtitle Control -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">ခေါင်းစဉ် (Main Title)</label>
+          <input type="text" id="input-title" value="Indicaciones Del Sistema" 
+            class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-amber-400">
         </div>
 
-        <!-- User Data & Message Panel -->
-        <div class="mb-6 rounded-2xl bg-slate-50/80 p-4 border border-slate-200/80 space-y-3">
-          <!-- User Info Chip -->
-          <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-xl bg-white border border-slate-200 shadow-2xs">
-            <div class="w-6 h-6 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xs">
-              ID
-            </div>
-            <span class="font-bold text-slate-800 text-xs tracking-tight">Estimado miembro (5653980706)</span>
-          </div>
-
-          <!-- Notice Description -->
-          <p class="text-slate-600 text-xs leading-relaxed font-medium">
-            Dado que no retiró fondos según el plan de retiros a plazos ofrecido por el mercado libre, su cuenta está sujeta al control de riesgo del sistema. Debe verificar y desactivar dicho control antes de poder solicitar otro retiro.
-          </p>
+        <!-- Alert Status Controls -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Alert ခေါင်းစဉ် (Alert Title)</label>
+          <input type="text" id="input-alert-title" value="¡Estado del control de riesgos!" 
+            class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-amber-400">
         </div>
 
-        <!-- High-Impact Action Button -->
-        <button class="w-full relative group overflow-hidden rounded-2xl bg-yellow-400 p-0.5 shadow-xl shadow-yellow-400/40 active:scale-[0.98] transition-all duration-200">
-          <div class="w-full bg-gradient-to-r from-yellow-400 via-amber-300 to-yellow-400 py-4 rounded-[14px] text-center font-black text-blue-950 uppercase tracking-wider text-sm flex items-center justify-center space-x-2 group-hover:brightness-105 transition">
-            <span>confirmar</span>
-            <div class="p-1 rounded-lg bg-blue-950/10">
-              <svg class="w-4 h-4 text-blue-950 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </div>
-          </div>
-        </button>
-      </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Alert စာတို (Alert Subtitle)</label>
+          <input type="text" id="input-alert-sub" value="Atención requerida para continuar con sus transacciones." 
+            class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-amber-400">
+        </div>
 
-      <!-- Footer Info Bar -->
-      <div class="bg-slate-50 px-6 py-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-semibold text-slate-400">
-        <span>Seguridad Mercado Libre</span>
-        <span class="flex items-center gap-1">
-          <svg class="w-3.5 h-3.5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-          </svg>
-          Protegido
-        </span>
-      </div>
+        <!-- User ID Control -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">အသုံးပြုသူ ID (User ID)</label>
+          <input type="text" id="input-userid" value="5653980706" 
+            class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-amber-400">
+        </div>
 
+        <!-- Notice Description Control -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">အသေးစိတ် အကြောင်းကြားစာ (Message)</label>
+          <textarea id="input-message" rows="4" 
+            class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-amber-400">Dado que no retiró fondos según el plan de retiros a plazos ofrecido por el mercado libre, su cuenta está sujeta al control de riesgo del sistema. Debe verificar y desactivar dicho control antes de poder solicitar otro retiro.</textarea>
+        </div>
+
+        <!-- Button Text Control -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">ခလုတ် စာသား (Button Text)</label>
+          <input type="text" id="input-btn" value="confirmar" 
+            class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-amber-400">
+        </div>
+
+        <!-- Theme Preset Select -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Alert Theme အရောင် ပြောင်းရန်</label>
+          <select id="select-theme" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-amber-400">
+            <option value="red">Red Warning (အနီရောင် - Risk Control)</option>
+            <option value="amber">Amber Alert (ဝါရောင် - Warning)</option>
+            <option value="emerald">Emerald Success (အစိမ်းရောင် - Normal)</option>
+          </select>
+        </div>
+
+      </div>
     </div>
+
+    <!-- Right Column: Live Preview Card Display -->
+    <div class="lg:col-span-7 flex flex-col items-center justify-center w-full">
+      <p class="text-xs font-semibold text-slate-400 mb-3 tracking-wider uppercase">Live Preview</p>
+
+      <!-- Outer Glow Container -->
+      <div class="relative w-full max-w-md">
+        <!-- Ambient Light Effect -->
+        <div class="absolute -inset-1.5 bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-300 rounded-[32px] blur-2xl opacity-25"></div>
+
+        <!-- Main Card Body -->
+        <div class="relative bg-white rounded-[28px] shadow-2xl overflow-hidden border border-slate-100">
+          
+          <!-- Top Mercado Libre Brand Header Banner -->
+          <div class="bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 px-6 py-4 flex items-center justify-between border-b border-yellow-400/50">
+            <div class="flex items-center space-x-2.5">
+              <!-- Logo Badge -->
+              <div class="p-1.5 bg-blue-900 rounded-xl shadow-md">
+                <svg class="w-5 h-5 text-yellow-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M11 17l-5-5 5-5" />
+                  <path d="M18 17l-5-5 5-5" />
+                </svg>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-base font-black text-blue-950 tracking-tighter leading-none">mercado</span>
+                <span class="text-base font-black text-blue-950 tracking-tighter leading-none">libre</span>
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-1.5 bg-blue-950/10 backdrop-blur-md px-3 py-1 rounded-full border border-blue-950/10">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span class="text-[11px] font-extrabold text-blue-950 uppercase tracking-wide">Sistema Oficial</span>
+            </div>
+          </div>
+
+          <div class="p-6">
+            <!-- Main Title -->
+            <h2 id="card-title" class="text-2xl font-extrabold text-slate-900 tracking-tight text-center mb-5">
+              Indicaciones Del Sistema
+            </h2>
+
+            <!-- Alert Notification Card -->
+            <div id="alert-box" class="mb-5 rounded-2xl bg-gradient-to-r from-red-500/10 via-rose-500/5 to-red-500/10 p-4 border border-red-500/20 shadow-sm flex items-start space-x-3.5">
+              <div id="alert-icon" class="shrink-0 p-2.5 bg-red-500 text-white rounded-2xl shadow-lg shadow-red-500/30 mt-0.5">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+              </div>
+              <div>
+                <h3 id="card-alert-title" class="font-extrabold text-sm text-red-950 tracking-tight mb-0.5">
+                  ¡Estado del control de riesgos!
+                </h3>
+                <p id="card-alert-sub" class="text-xs font-semibold text-red-700/90 leading-tight">
+                  Atención requerida para continuar con sus transacciones.
+                </p>
+              </div>
+            </div>
+
+            <!-- User Data & Message Panel -->
+            <div class="mb-6 rounded-2xl bg-slate-50/80 p-4 border border-slate-200/80 space-y-3">
+              <!-- User Info Chip -->
+              <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-xl bg-white border border-slate-200 shadow-2xs">
+                <div class="w-6 h-6 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xs">
+                  ID
+                </div>
+                <span id="card-userid" class="font-bold text-slate-800 text-xs tracking-tight">Estimado miembro (5653980706)</span>
+              </div>
+
+              <!-- Notice Description -->
+              <p id="card-message" class="text-slate-600 text-xs leading-relaxed font-medium">
+                Dado que no retiró fondos según el plan de retiros a plazos ofrecido por el mercado libre, su cuenta está sujeta al control de riesgo del sistema. Debe verificar y desactivar dicho control antes de poder solicitar otro retiro.
+              </p>
+            </div>
+
+            <!-- High-Impact Action Button -->
+            <button class="w-full relative group overflow-hidden rounded-2xl bg-yellow-400 p-0.5 shadow-xl shadow-yellow-400/40 active:scale-[0.98] transition-all duration-200">
+              <div class="w-full bg-gradient-to-r from-yellow-400 via-amber-300 to-yellow-400 py-4 rounded-[14px] text-center font-black text-blue-950 uppercase tracking-wider text-sm flex items-center justify-center space-x-2 group-hover:brightness-105 transition">
+                <span id="card-btn">confirmar</span>
+                <div class="p-1 rounded-lg bg-blue-950/10">
+                  <svg class="w-4 h-4 text-blue-950 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </div>
+              </div>
+            </button>
+          </div>
+
+          <!-- Footer Info Bar -->
+          <div class="bg-slate-50 px-6 py-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-semibold text-slate-400">
+            <span>Seguridad Mercado Libre</span>
+            <span class="flex items-center gap-1">
+              <svg class="w-3.5 h-3.5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              Protegido
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
   </div>
 
+  <!-- JavaScript for Live Interactivity -->
+  <script>
+    const inputTitle = document.getElementById('input-title');
+    const inputAlertTitle = document.getElementById('input-alert-title');
+    const inputAlertSub = document.getElementById('input-alert-sub');
+    const inputUserid = document.getElementById('input-userid');
+    const inputMessage = document.getElementById('input-message');
+    const inputBtn = document.getElementById('input-btn');
+    const selectTheme = document.getElementById('select-theme');
+
+    const cardTitle = document.getElementById('card-title');
+    const cardAlertTitle = document.getElementById('card-alert-title');
+    const cardAlertSub = document.getElementById('card-alert-sub');
+    const cardUserid = document.getElementById('card-userid');
+    const cardMessage = document.getElementById('card-message');
+    const cardBtn = document.getElementById('card-btn');
+    const alertBox = document.getElementById('alert-box');
+    const alertIcon = document.getElementById('alert-icon');
+
+    // Live Text Binding
+    inputTitle.addEventListener('input', (e) => cardTitle.textContent = e.target.value);
+    inputAlertTitle.addEventListener('input', (e) => cardAlertTitle.textContent = e.target.value);
+    inputAlertSub.addEventListener('input', (e) => cardAlertSub.textContent = e.target.value);
+    inputUserid.addEventListener('input', (e) => cardUserid.textContent = `Estimado miembro (${e.target.value})`);
+    inputMessage.addEventListener('input', (e) => cardMessage.textContent = e.target.value);
+    inputBtn.addEventListener('input', (e) => cardBtn.textContent = e.target.value);
+
+    // Theme Switcher Logic
+    selectTheme.addEventListener('change', (e) => {
+      const val = e.target.value;
+      
+      if (val === 'red') {
+        alertBox.className = "mb-5 rounded-2xl bg-gradient-to-r from-red-500/10 via-rose-500/5 to-red-500/10 p-4 border border-red-500/20 shadow-sm flex items-start space-x-3.5";
+        alertIcon.className = "shrink-0 p-2.5 bg-red-500 text-white rounded-2xl shadow-lg shadow-red-500/30 mt-0.5";
+        cardAlertTitle.className = "font-extrabold text-sm text-red-950 tracking-tight mb-0.5";
+        cardAlertSub.className = "text-xs font-semibold text-red-700/90 leading-tight";
+      } else if (val === 'amber') {
+        alertBox.className = "mb-5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-yellow-500/5 to-amber-500/10 p-4 border border-amber-500/20 shadow-sm flex items-start space-x-3.5";
+        alertIcon.className = "shrink-0 p-2.5 bg-amber-500 text-white rounded-2xl shadow-lg shadow-amber-500/30 mt-0.5";
+        cardAlertTitle.className = "font-extrabold text-sm text-amber-950 tracking-tight mb-0.5";
+        cardAlertSub.className = "text-xs font-semibold text-amber-700/90 leading-tight";
+      } else if (val === 'emerald') {
+        alertBox.className = "mb-5 rounded-2xl bg-gradient-to-r from-emerald-500/10 via-teal-500/5 to-emerald-500/10 p-4 border border-emerald-500/20 shadow-sm flex items-start space-x-3.5";
+        alertIcon.className = "shrink-0 p-2.5 bg-emerald-500 text-white rounded-2xl shadow-lg shadow-emerald-500/30 mt-0.5";
+        cardAlertTitle.className = "font-extrabold text-sm text-emerald-950 tracking-tight mb-0.5";
+        cardAlertSub.className = "text-xs font-semibold text-emerald-700/90 leading-tight";
+      }
+    });
+  </script>
 </body>
 </html>
