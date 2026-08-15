@@ -33,8 +33,8 @@
         <label class="block text-xs font-semibold text-amber-300 mb-1">⚡ Quick Preset Templates (နမူနာ ပုံစံများ)</label>
         <select id="select-preset" class="w-full bg-slate-950 border border-amber-500/50 rounded-xl px-3 py-2 text-white font-medium focus:outline-none focus:border-amber-400">
           <option value="custom">-- Custom (စိတ်ကြိုက် ပြင်ဆင်မည်) --</option>
-          <option value="risk" selected>Risk Control Warning (အနီရောင် သတိပေးချက်)</option>
-          <option value="bank_error">Bank Account Error (ဘဏ်အကောင့်အမှား သတိပေးချက်)</option>
+          <option value="risk">Risk Control Warning (အနီရောင် သတိပေးချက်)</option>
+          <option value="bank_error" selected>Bank Account Error (ဘဏ်အကောင့်အမှား သတိပေးချက်)</option>
           <option value="verify">Account Verification (ဝါရောင် အကောင့်စစ်ဆေးရန်)</option>
           <option value="success">Withdrawal Success (အစိမ်းရောင် အောင်မြင်သည်)</option>
         </select>
@@ -53,13 +53,13 @@
         <!-- Alert Status Controls -->
         <div>
           <label class="block text-xs font-semibold text-slate-300 mb-1">Alert ခေါင်းစဉ် (Alert Title)</label>
-          <input type="text" id="input-alert-title" value="¡Estado del control de riesgos!" 
+          <input type="text" id="input-alert-title" value="Error en la cuenta bancaria" 
             class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-amber-400">
         </div>
 
         <div>
           <label class="block text-xs font-semibold text-slate-300 mb-1">Alert စာတို (Alert Subtitle)</label>
-          <input type="text" id="input-alert-sub" value="Atención requerida para continuar con sus transacciones." 
+          <input type="text" id="input-alert-sub" value="Se ha detectado un error en la información de su cuenta bancaria. Por favor, verifique sus datos para continuar." 
             class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-amber-400">
         </div>
 
@@ -81,13 +81,13 @@
         <div>
           <label class="block text-xs font-semibold text-slate-300 mb-1">အသေးစိတ် အကြောင်းကြားစာ (Message)</label>
           <textarea id="input-message" rows="3" 
-            class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-amber-400">Dado que no retiró fondos según el plan de retiros a plazos ofrecido por el mercado libre, su cuenta está sujeta al control de riesgo del sistema. Debe verificar y desactivar dicho control antes de poder solicitar otro retiro.</textarea>
+            class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-amber-400">Mensaje detallado. Sus fondos han sido devueltos a la tienda. Debido a que la información de retiro es incorrecta, su cuenta del centro comercial se encuentra actualmente bajo control de riesgos y no se pueden realizar retiros.</textarea>
         </div>
 
         <!-- Button Text Control -->
         <div>
           <label class="block text-xs font-semibold text-slate-300 mb-1">ခလုတ် စာသား (Button Text)</label>
-          <input type="text" id="input-btn" value="confirmar" 
+          <input type="text" id="input-btn" value="Retirarse exitosa" 
             class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-amber-400">
         </div>
 
@@ -95,7 +95,7 @@
         <div>
           <label class="block text-xs font-semibold text-slate-300 mb-1">Alert Theme အရောင် ပြောင်းရန်</label>
           <select id="select-theme" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-amber-400">
-            <option value="red">Red Warning (အနီရောင် - Risk Control)</option>
+            <option value="red" selected>Red Warning (အနီရောင် - Risk Control)</option>
             <option value="amber">Amber Alert (ဝါရောင် - Warning)</option>
             <option value="emerald">Emerald Success (အစိမ်းရောင် - Normal)</option>
           </select>
@@ -153,7 +153,7 @@
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
             </svg>
-            <span id="copy-btn-text">Clipboard သို့ Direct Copy ကူးရန်</span>
+            <span>Clipboard သို့ Direct Copy ကူးရန်</span>
           </button>
         </div>
 
@@ -210,10 +210,10 @@
               </div>
               <div>
                 <h3 id="card-alert-title" class="font-extrabold text-sm text-red-950 tracking-tight mb-0.5">
-                  ¡Estado del control de riesgos!
+                  Error en la cuenta bancaria
                 </h3>
                 <p id="card-alert-sub" class="text-xs font-semibold text-red-700/90 leading-tight">
-                  Atención requerida para continuar con sus transacciones.
+                  Se ha detectado un error en la información de su cuenta bancaria. Por favor, verifique sus datos para continuar.
                 </p>
               </div>
             </div>
@@ -230,14 +230,14 @@
 
               <!-- Notice Description -->
               <p id="card-message" class="text-slate-600 text-xs leading-relaxed font-medium">
-                Dado que no retiró fondos según el plan de retiros a plazos ofrecido por el mercado libre, su cuenta está sujeta al control de riesgo del sistema. Debe verificar y desactivar dicho control antes de poder solicitar otro retiro.
+                Mensaje detallado. Sus fondos han sido devueltos a la tienda. Debido a que la información de retiro es incorrecta, su cuenta del centro comercial se encuentra actualmente bajo control de riesgos y no se pueden realizar retiros.
               </p>
             </div>
 
             <!-- High-Impact Action Button -->
             <button class="w-full relative group overflow-hidden rounded-2xl bg-yellow-400 p-0.5 shadow-xl shadow-yellow-400/40 active:scale-[0.98] transition-all duration-200">
               <div class="w-full bg-gradient-to-r from-yellow-400 via-amber-300 to-yellow-400 py-4 rounded-[14px] text-center font-black text-blue-950 uppercase tracking-wider text-sm flex items-center justify-center space-x-2 group-hover:brightness-105 transition">
-                <span id="card-btn">confirmar</span>
+                <span id="card-btn">Retirarse exitosa</span>
                 <div class="p-1 rounded-lg bg-blue-950/10">
                   <svg class="w-4 h-4 text-blue-950 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -295,9 +295,7 @@
     const customLogoImg = document.getElementById('custom-logo-img');
 
     const downloadBtn = document.getElementById('download-btn');
-    const downloadBtnText = document.getElementById('download-btn-text');
     const copyBtn = document.getElementById('copy-btn');
-    const copyBtnText = document.getElementById('copy-btn-text');
     const saveDraftBtn = document.getElementById('save-draft-btn');
     const loadDraftBtn = document.getElementById('load-draft-btn');
 
@@ -315,7 +313,7 @@
       bank_error: {
         title: "Indicaciones Del Sistema",
         alertTitle: "Error en la cuenta bancaria",
-        alertSub: "Tu solicitud se ha realizado correctamente; ahora vuelve a conectar tu cuenta bancaria e intenta de nuevo el proceso de retiro.",
+        alertSub: "Se ha detectado un error en la información de su cuenta bancaria. Por favor, verifique sus datos para continuar.",
         userId: "5653980706",
         message: "Mensaje detallado. Sus fondos han sido devueltos a la tienda. Debido a que la información de retiro es incorrecta, su cuenta del centro comercial se encuentra actualmente bajo control de riesgos y no se pueden realizar retiros.",
         btn: "Retirarse exitosa",
@@ -474,7 +472,7 @@
     downloadBtn.addEventListener('click', async () => {
       try {
         downloadBtn.disabled = true;
-        downloadBtnText.innerText = "ပုံရိပ်ထုတ်ယူနေသည်...";
+        downloadBtn.innerText = "ပုံရိပ်ထုတ်ယူနေသည်...";
 
         const format = selectFormat.value;
         const canvas = await generateCanvas();
@@ -490,7 +488,12 @@
         alert("ပုံရိပ်ထုတ်ယူရာတွင် အမှားအယွင်းရှိပါသည်");
       } finally {
         downloadBtn.disabled = false;
-        downloadBtnText.innerText = "ပုံရိပ်အဖြစ် Download ရယူရန်";
+        downloadBtn.innerHTML = `
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+          </svg>
+          <span>ပုံရိပ်အဖြစ် Download ရယူရန်</span>
+        `;
       }
     });
 
@@ -498,14 +501,12 @@
     copyBtn.addEventListener('click', async () => {
       try {
         copyBtn.disabled = true;
-        copyBtnText.innerText = "Clipboard သို့ ကူးယူနေသည်...";
+        copyBtn.innerText = "Clipboard သို့ ကူးယူနေသည်...";
 
         const canvas = await generateCanvas();
         canvas.toBlob(async (blob) => {
           if (!blob) {
             alert("Clipboard သို့ ကူးယူ၍ မရပါ");
-            copyBtn.disabled = false;
-            copyBtnText.innerText = "Clipboard သို့ Direct Copy ကူးရန်";
             return;
           }
           try {
@@ -518,13 +519,17 @@
             alert("Browser မှ Clipboard Access ပိတ်ထားပါသည်");
           } finally {
             copyBtn.disabled = false;
-            copyBtnText.innerText = "Clipboard သို့ Direct Copy ကူးရန်";
+            copyBtn.innerHTML = `
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+              </svg>
+              <span>Clipboard သို့ Direct Copy ကူးရန်</span>
+            `;
           }
         }, 'image/png');
       } catch (err) {
         console.error(err);
         copyBtn.disabled = false;
-        copyBtnText.innerText = "Clipboard သို့ Direct Copy ကူးရန်";
       }
     });
   </script>
