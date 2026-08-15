@@ -1,28 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <!DOCTYPE html>
-<html lang="es">
-<head>
-  <!-- 👇 Inspect Element & Right-Click ပိတ်သည့် Code စတင်သည် 👇 -->
-  <script>
-    // Right Click ပိတ်ခြင်း
-    document.addEventListener('contextmenu', event => event.preventDefault());
-
-    // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U စသည့် Short-key များကို ပိတ်ခြင်း
-    document.onkeydown = function (e) {
-      if (e.keyCode == 123 || 
-         (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || 
-         (e.ctrlKey && e.keyCode == 85)) {
-        return false;
-      }
-    };
-  </script>
-  <!-- 👆 ဤနေရာအထိ ဖြစ်ပါတယ် 👆 -->
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mercado Libre - Dynamic Card Customizer Pro</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mercado Libre - Dynamic Card Customizer Pro</title>
@@ -246,9 +224,8 @@
                 <div class="w-6 h-6 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xs">
                   ID
                 </div>
-                <!-- ID စာသား ပါမလာသည့် ပြဿနာအတွက် ဖွဲ့စည်းပုံကို သီးသန့် ရှင်းလင်းထားသည် -->
-                <span class="font-bold text-slate-800 text-xs tracking-tight">Estimado miembro (ID: <span id="card-userId">5653980706</span>)</span>
-                </div>
+                <span id="card-userid" class="font-bold text-slate-800 text-xs tracking-tight">Estimado miembro (5653980706)</span>
+              </div>
 
               <!-- Notice Description -->
               <p id="card-message" class="text-slate-600 text-xs leading-relaxed font-medium">
@@ -352,18 +329,15 @@
       }
     };
 
-    // Apply Form Data to Live Card Preview (Direct DOM Sync)
+    // Apply Form Data to Live Card Preview
     function updateCard() {
-      cardTitle.innerText = inputTitle.value;
-      cardAlertTitle.innerText = inputAlertTitle.value;
-      cardAlertSub.innerText = inputAlertSub.value;
-      cardUserid.innerText = inputUserid.value;
-      cardMessage.innerText = inputMessage.value;
-      cardBtn.innerText = inputBtn.value;
+      cardTitle.textContent = inputTitle.value;
+      cardAlertTitle.textContent = inputAlertTitle.value;
+      cardAlertSub.textContent = inputAlertSub.value;
+      cardUserid.textContent = `Estimado miembro (${inputUserid.value})`;
+      cardMessage.textContent = inputMessage.value;
+      cardBtn.textContent = inputBtn.value;
     }
-
-    // Initial Sync
-    updateCard();
 
     // Live Text Binding Events
     inputTitle.addEventListener('input', updateCard);
@@ -474,19 +448,12 @@
       }
     });
 
-    // Generate Canvas Helper (Force DOM Sync Before Render)
+    // Generate Canvas Helper
     async function generateCanvas() {
-      // 1. Force Text Update
-      updateCard();
-      
-      // 2. Allow Browser to Render Cycle Complete
-      await new Promise(resolve => setTimeout(resolve, 50));
-
       const scale = parseFloat(selectScale.value) || 2;
       return await html2canvas(exportCard, {
         scale: scale,
         useCORS: true,
-        allowTaint: true,
         backgroundColor: selectBg.value === 'transparent' ? null : undefined
       });
     }
@@ -544,7 +511,7 @@
             copyBtn.disabled = false;
             copyBtn.innerHTML = `
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 012-2h2a2 2 0 012-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
               </svg>
               <span>Clipboard သို့ Direct Copy ကူးရန်</span>
             `;
