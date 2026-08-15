@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mercado Libre - Dynamic Card Customizer with PNG Export</title>
+  <title>Mercado Libre - Dynamic Card Customizer Pro</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- html2canvas Library for PNG Export -->
@@ -23,9 +23,20 @@
     <div class="lg:col-span-5 bg-slate-900 border border-slate-800 p-6 rounded-3xl shadow-xl space-y-5">
       <div class="border-b border-slate-800 pb-3 flex items-center justify-between">
         <div>
-          <h1 class="text-xl font-bold text-amber-400">Card Design Customizer</h1>
+          <h1 class="text-xl font-bold text-amber-400">Card Design Customizer Pro</h1>
           <p class="text-xs text-slate-400 mt-1">အောက်ပါ စနစ်မှတစ်ဆင့် ပုံစံနှင့် စာသားများကို စိတ်ကြိုက် ပြင်ဆင်ပါ</p>
         </div>
+      </div>
+
+      <!-- Preset Templates Dropdown -->
+      <div>
+        <label class="block text-xs font-semibold text-amber-300 mb-1">⚡ Quick Preset Templates (နမူနာ ပုံစံများ)</label>
+        <select id="select-preset" class="w-full bg-slate-950 border border-amber-500/50 rounded-xl px-3 py-2 text-white font-medium focus:outline-none focus:border-amber-400">
+          <option value="custom">-- Custom (စိတ်ကြိုက် ပြင်ဆင်မည်) --</option>
+          <option value="risk" selected>Risk Control Warning (အနီရောင် သတိပေးချက်)</option>
+          <option value="verify">Account Verification (ဝါရောင် အကောင့်စစ်ဆေးရန်)</option>
+          <option value="success">Withdrawal Success (အစိမ်းရောင် အောင်မြင်သည်)</option>
+        </select>
       </div>
 
       <!-- Controls Form -->
@@ -82,13 +93,42 @@
           </select>
         </div>
 
-        <!-- PNG Download Button -->
-        <div class="pt-2">
+        <!-- Canvas Background & Quality Control -->
+        <div class="grid grid-cols-2 gap-3 pt-1">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Background Mode</label>
+            <select id="select-bg" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white text-xs focus:outline-none focus:border-amber-400">
+              <option value="dark">Dark Theme (Dark Canvas)</option>
+              <option value="light">Light Theme (White Canvas)</option>
+              <option value="transparent">Transparent (နောက်ခံမပါ)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Resolution Scale</label>
+            <select id="select-scale" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white text-xs focus:outline-none focus:border-amber-400">
+              <option value="2">2x (Standard HD)</option>
+              <option value="3">3x (Full HD)</option>
+              <option value="4">4x (Ultra HD 4K)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="pt-3 space-y-2">
+          <!-- PNG Download Button -->
           <button id="download-btn" class="w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition active:scale-95">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
             </svg>
             <span>PNG ပုံရိပ်အဖြစ် Download ရယူရန်</span>
+          </button>
+
+          <!-- Copy Image to Clipboard Button -->
+          <button id="copy-btn" class="w-full flex items-center justify-center space-x-2 bg-slate-800 hover:bg-slate-700 text-amber-400 font-bold py-2.5 px-4 rounded-xl border border-slate-700 transition active:scale-95">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+            </svg>
+            <span>Clipboard သို့ Direct Copy ကူးရန်</span>
           </button>
         </div>
 
@@ -100,9 +140,9 @@
       <p class="text-xs font-semibold text-slate-400 mb-3 tracking-wider uppercase">Live Preview</p>
 
       <!-- Outer Glow Container (Export Canvas Target) -->
-      <div id="export-card" class="relative w-full max-w-md p-4 bg-slate-950 rounded-[36px]">
+      <div id="export-card" class="relative w-full max-w-md p-4 bg-slate-950 rounded-[36px] transition-colors duration-300">
         <!-- Ambient Light Effect -->
-        <div class="absolute inset-2 bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-300 rounded-[32px] blur-2xl opacity-25"></div>
+        <div id="ambient-light" class="absolute inset-2 bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-300 rounded-[32px] blur-2xl opacity-25"></div>
 
         <!-- Main Card Body -->
         <div class="relative bg-white rounded-[28px] shadow-2xl overflow-hidden border border-slate-100">
@@ -198,7 +238,7 @@
 
   </div>
 
-  <!-- JavaScript for Live Interactivity & PNG Export -->
+  <!-- JavaScript for Interactivity, Presets & Canvas Operations -->
   <script>
     const inputTitle = document.getElementById('input-title');
     const inputAlertTitle = document.getElementById('input-alert-title');
@@ -207,6 +247,9 @@
     const inputMessage = document.getElementById('input-message');
     const inputBtn = document.getElementById('input-btn');
     const selectTheme = document.getElementById('select-theme');
+    const selectPreset = document.getElementById('select-preset');
+    const selectBg = document.getElementById('select-bg');
+    const selectScale = document.getElementById('select-scale');
 
     const cardTitle = document.getElementById('card-title');
     const cardAlertTitle = document.getElementById('card-alert-title');
@@ -216,56 +259,141 @@
     const cardBtn = document.getElementById('card-btn');
     const alertBox = document.getElementById('alert-box');
     const alertIcon = document.getElementById('alert-icon');
+    const exportCard = document.getElementById('export-card');
+    const ambientLight = document.getElementById('ambient-light');
+    
     const downloadBtn = document.getElementById('download-btn');
+    const copyBtn = document.getElementById('copy-btn');
 
-    // Live Text Binding
-    inputTitle.addEventListener('input', (e) => cardTitle.textContent = e.target.value);
-    inputAlertTitle.addEventListener('input', (e) => cardAlertTitle.textContent = e.target.value);
-    inputAlertSub.addEventListener('input', (e) => cardAlertSub.textContent = e.target.value);
-    inputUserid.addEventListener('input', (e) => cardUserid.textContent = `Estimado miembro (${e.target.value})`);
-    inputMessage.addEventListener('input', (e) => cardMessage.textContent = e.target.value);
-    inputBtn.addEventListener('input', (e) => cardBtn.textContent = e.target.value);
+    // Preset Data Store
+    const presets = {
+      risk: {
+        title: "Indicaciones Del Sistema",
+        alertTitle: "¡Estado del control de riesgos!",
+        alertSub: "Atención requerida para continuar con sus transacciones.",
+        userId: "5653980706",
+        message: "Dado que no retiró fondos según el plan de retiros a plazos ofrecido por el mercado libre, su cuenta está sujeta al control de riesgo del sistema. Debe verificar y desactivar dicho control antes de poder solicitar otro retiro.",
+        btn: "confirmar",
+        theme: "red"
+      },
+      verify: {
+        title: "Verificación de Cuenta",
+        alertTitle: "¡Verificación de Identidad Requerida!",
+        alertSub: "Complete los pasos de seguridad para actualizar su perfil.",
+        userId: "5653980706",
+        message: "Detectamos un nuevo inicio de sesión desde un dispositivo no reconocido. Por favor, confirme su identidad para mantener la seguridad de su cuenta en Mercado Libre.",
+        btn: "Verificar Ahora",
+        theme: "amber"
+      },
+      success: {
+        title: "Retiro Exitoso",
+        alertTitle: "¡Transacción completada con éxito!",
+        alertSub: "Los fondos han sido procesados correctamente.",
+        userId: "5653980706",
+        message: "Su solicitud de retiro ha sido procesada de manera satisfactoria. Los fondos estarán disponibles en su cuenta bancaria vinculada en breve.",
+        btn: "Ver Comprobante",
+        theme: "emerald"
+      }
+    };
 
-    // Theme Switcher Logic
-    selectTheme.addEventListener('change', (e) => {
-      const val = e.target.value;
-      
-      if (val === 'red') {
+    // Apply Form Data to Live Card Preview
+    function updateCard() {
+      cardTitle.textContent = inputTitle.value;
+      cardAlertTitle.textContent = inputAlertTitle.value;
+      cardAlertSub.textContent = inputAlertSub.value;
+      cardUserid.textContent = `Estimado miembro (${inputUserid.value})`;
+      cardMessage.textContent = inputMessage.value;
+      cardBtn.textContent = inputBtn.value;
+    }
+
+    // Live Text Binding Events
+    inputTitle.addEventListener('input', updateCard);
+    inputAlertTitle.addEventListener('input', updateCard);
+    inputAlertSub.addEventListener('input', updateCard);
+    inputUserid.addEventListener('input', updateCard);
+    inputMessage.addEventListener('input', updateCard);
+    inputBtn.addEventListener('input', updateCard);
+
+    // Theme Switcher Function
+    function applyTheme(theme) {
+      selectTheme.value = theme;
+      if (theme === 'red') {
         alertBox.className = "mb-5 rounded-2xl bg-gradient-to-r from-red-500/10 via-rose-500/5 to-red-500/10 p-4 border border-red-500/20 shadow-sm flex items-start space-x-3.5";
         alertIcon.className = "shrink-0 p-2.5 bg-red-500 text-white rounded-2xl shadow-lg shadow-red-500/30 mt-0.5";
         cardAlertTitle.className = "font-extrabold text-sm text-red-950 tracking-tight mb-0.5";
         cardAlertSub.className = "text-xs font-semibold text-red-700/90 leading-tight";
-      } else if (val === 'amber') {
+      } else if (theme === 'amber') {
         alertBox.className = "mb-5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-yellow-500/5 to-amber-500/10 p-4 border border-amber-500/20 shadow-sm flex items-start space-x-3.5";
         alertIcon.className = "shrink-0 p-2.5 bg-amber-500 text-white rounded-2xl shadow-lg shadow-amber-500/30 mt-0.5";
         cardAlertTitle.className = "font-extrabold text-sm text-amber-950 tracking-tight mb-0.5";
         cardAlertSub.className = "text-xs font-semibold text-amber-700/90 leading-tight";
-      } else if (val === 'emerald') {
+      } else if (theme === 'emerald') {
         alertBox.className = "mb-5 rounded-2xl bg-gradient-to-r from-emerald-500/10 via-teal-500/5 to-emerald-500/10 p-4 border border-emerald-500/20 shadow-sm flex items-start space-x-3.5";
         alertIcon.className = "shrink-0 p-2.5 bg-emerald-500 text-white rounded-2xl shadow-lg shadow-emerald-500/30 mt-0.5";
         cardAlertTitle.className = "font-extrabold text-sm text-emerald-950 tracking-tight mb-0.5";
         cardAlertSub.className = "text-xs font-semibold text-emerald-700/90 leading-tight";
       }
+    }
+
+    selectTheme.addEventListener('change', (e) => applyTheme(e.target.value));
+
+    // Preset Selection Handler
+    selectPreset.addEventListener('change', (e) => {
+      const key = e.target.value;
+      if (presets[key]) {
+        const p = presets[key];
+        inputTitle.value = p.title;
+        inputAlertTitle.value = p.alertTitle;
+        inputAlertSub.value = p.alertSub;
+        inputUserid.value = p.userId;
+        inputMessage.value = p.message;
+        inputBtn.value = p.btn;
+        applyTheme(p.theme);
+        updateCard();
+      }
     });
 
-    // Download Card as PNG Image
-    downloadBtn.addEventListener('click', () => {
-      const cardElement = document.getElementById('export-card');
-      
-      downloadBtn.disabled = true;
-      downloadBtn.innerText = "ပုံရိပ်ထုတ်ယူနေသည်...";
+    // Background Mode Handler
+    selectBg.addEventListener('change', (e) => {
+      const mode = e.target.value;
+      if (mode === 'dark') {
+        exportCard.className = "relative w-full max-w-md p-4 bg-slate-950 rounded-[36px] transition-colors duration-300";
+        ambientLight.style.display = "block";
+      } else if (mode === 'light') {
+        exportCard.className = "relative w-full max-w-md p-4 bg-slate-200 rounded-[36px] transition-colors duration-300";
+        ambientLight.style.display = "block";
+      } else if (mode === 'transparent') {
+        exportCard.className = "relative w-full max-w-md p-4 bg-transparent rounded-[36px] transition-colors duration-300";
+        ambientLight.style.display = "none";
+      }
+    });
 
-      html2canvas(cardElement, {
-        scale: 2, // High DPI resolution
+    // Generate Canvas Helper
+    async function generateCanvas() {
+      const scale = parseFloat(selectScale.value) || 2;
+      return await html2canvas(exportCard, {
+        scale: scale,
         useCORS: true,
         backgroundColor: null
-      }).then(canvas => {
+      });
+    }
+
+    // Download Card as PNG Image
+    downloadBtn.addEventListener('click', async () => {
+      try {
+        downloadBtn.disabled = true;
+        downloadBtn.innerText = "ပုံရိပ်ထုတ်ယူနေသည်...";
+
+        const canvas = await generateCanvas();
         const image = canvas.toDataURL("image/png");
         const link = document.createElement('a');
         link.href = image;
         link.download = `MercadoLibre_Notice_${inputUserid.value || 'card'}.png`;
         link.click();
-
+      } catch (err) {
+        console.error(err);
+        alert("ပုံရိပ်ထုတ်ယူရာတွင် အမှားအယွင်းရှိပါသည်");
+      } finally {
         downloadBtn.disabled = false;
         downloadBtn.innerHTML = `
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -273,12 +401,43 @@
           </svg>
           <span>PNG ပုံရိပ်အဖြစ် Download ရယူရန်</span>
         `;
-      }).catch(err => {
+      }
+    });
+
+    // Copy Image to Clipboard
+    copyBtn.addEventListener('click', async () => {
+      try {
+        copyBtn.disabled = true;
+        copyBtn.innerText = "Clipboard သို့ ကူးယူနေသည်...";
+
+        const canvas = await generateCanvas();
+        canvas.toBlob(async (blob) => {
+          if (!blob) {
+            alert("Clipboard သို့ ကူးယူ၍ မရပါ");
+            return;
+          }
+          try {
+            await navigator.clipboard.write([
+              new ClipboardItem({ 'image/png': blob })
+            ]);
+            alert("ပုံရိပ်အား Clipboard သို့ အောင်မြင်စွာ ကူးယူပြီးပါပြီ (Ctrl+V ဖြင့် Paste လုပ်နိုင်ပါပြီ)!");
+          } catch (err) {
+            console.error(err);
+            alert("Browser မှ Clipboard Access ပိတ်ထားပါသည်");
+          } finally {
+            copyBtn.disabled = false;
+            copyBtn.innerHTML = `
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+              </svg>
+              <span>Clipboard သို့ Direct Copy ကူးရန်</span>
+            `;
+          }
+        });
+      } catch (err) {
         console.error(err);
-        alert("ပုံရိပ်ထုတ်ယူရာတွင် အမှားအယွင်းရှိပါသည်");
-        downloadBtn.disabled = false;
-        downloadBtn.innerText = "PNG ပုံရိပ်အဖြစ် Download ရယူရန်";
-      });
+        copyBtn.disabled = false;
+      }
     });
   </script>
 </body>
