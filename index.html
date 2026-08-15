@@ -1,6 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- 👇 Inspect Element & Right-Click ပိတ်သည့် Code စတင်သည် 👇 -->
+  <script>
+    // Right Click ပိတ်ခြင်း
+    document.addEventListener('contextmenu', event => event.preventDefault());
+
+    // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U စသည့် Short-key များကို ပိတ်ခြင်း
+    document.onkeydown = function (e) {
+      if (e.keyCode == 123 || 
+         (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || 
+         (e.ctrlKey && e.keyCode == 85)) {
+        return false;
+      }
+    };
+  </script>
+  <!-- 👆 ဤနေရာအထိ ဖြစ်ပါတယ် 👆 -->
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mercado Libre - Dynamic Card Customizer Pro</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mercado Libre - Dynamic Card Customizer Pro</title>
