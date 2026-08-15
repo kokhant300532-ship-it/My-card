@@ -6,7 +6,7 @@
   <title>Mercado Libre - Dynamic Card Customizer Pro</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- html2canvas Library for PNG Export -->
+  <!-- html2canvas Library for Image Export -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
@@ -42,7 +42,7 @@
       <!-- Controls Form -->
       <div class="space-y-4 text-sm">
         
-        <!-- Header Subtitle Control -->
+        <!-- Header Main Title Control -->
         <div>
           <label class="block text-xs font-semibold text-slate-300 mb-1">ခေါင်းစဉ် (Main Title)</label>
           <input type="text" id="input-title" value="Indicaciones Del Sistema" 
@@ -69,10 +69,17 @@
             class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-amber-400">
         </div>
 
+        <!-- Custom Brand/Logo Upload Control -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Custom Logo ထည့်သွင်းရန် (Optional Image Upload)</label>
+          <input type="file" id="input-logo" accept="image/*" 
+            class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-1.5 text-xs text-slate-400 focus:outline-none focus:border-amber-400 file:mr-3 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-amber-500 file:text-slate-950 hover:file:bg-amber-400">
+        </div>
+
         <!-- Notice Description Control -->
         <div>
           <label class="block text-xs font-semibold text-slate-300 mb-1">အသေးစိတ် အကြောင်းကြားစာ (Message)</label>
-          <textarea id="input-message" rows="4" 
+          <textarea id="input-message" rows="3" 
             class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-amber-400">Dado que no retiró fondos según el plan de retiros a plazos ofrecido por el mercado libre, su cuenta está sujeta al control de riesgo del sistema. Debe verificar y desactivar dicho control antes de poder solicitar otro retiro.</textarea>
         </div>
 
@@ -93,19 +100,26 @@
           </select>
         </div>
 
-        <!-- Canvas Background & Quality Control -->
-        <div class="grid grid-cols-2 gap-3 pt-1">
+        <!-- Canvas Background, Format & Resolution Control -->
+        <div class="grid grid-cols-3 gap-2 pt-1">
           <div>
-            <label class="block text-xs font-semibold text-slate-300 mb-1">Background Mode</label>
-            <select id="select-bg" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white text-xs focus:outline-none focus:border-amber-400">
-              <option value="dark">Dark Theme (Dark Canvas)</option>
-              <option value="light">Light Theme (White Canvas)</option>
-              <option value="transparent">Transparent (နောက်ခံမပါ)</option>
+            <label class="block text-[11px] font-semibold text-slate-300 mb-1">Background Mode</label>
+            <select id="select-bg" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-2 py-2 text-white text-xs focus:outline-none focus:border-amber-400">
+              <option value="dark">Dark Theme</option>
+              <option value="light">Light Theme</option>
+              <option value="transparent">Transparent</option>
             </select>
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-300 mb-1">Resolution Scale</label>
-            <select id="select-scale" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white text-xs focus:outline-none focus:border-amber-400">
+            <label class="block text-[11px] font-semibold text-slate-300 mb-1">Export Format</label>
+            <select id="select-format" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-2 py-2 text-white text-xs focus:outline-none focus:border-amber-400">
+              <option value="png">PNG (High Quality)</option>
+              <option value="jpeg">JPEG (Compressed)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-300 mb-1">Resolution Scale</label>
+            <select id="select-scale" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-2 py-2 text-white text-xs focus:outline-none focus:border-amber-400">
               <option value="2">2x (Standard HD)</option>
               <option value="3">3x (Full HD)</option>
               <option value="4">4x (Ultra HD 4K)</option>
@@ -113,14 +127,24 @@
           </div>
         </div>
 
+        <!-- LocalStorage Save/Load Draft Buttons -->
+        <div class="grid grid-cols-2 gap-3 pt-2">
+          <button id="save-draft-btn" class="w-full py-2 px-3 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-slate-700 transition">
+            💾 မူကြမ်း သိမ်းမည် (Save)
+          </button>
+          <button id="load-draft-btn" class="w-full py-2 px-3 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-slate-700 transition">
+            📂 မူကြမ်း ပြန်ယူမည် (Load)
+          </button>
+        </div>
+
         <!-- Action Buttons -->
-        <div class="pt-3 space-y-2">
-          <!-- PNG Download Button -->
+        <div class="pt-2 space-y-2">
+          <!-- Download Button -->
           <button id="download-btn" class="w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition active:scale-95">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
             </svg>
-            <span>PNG ပုံရိပ်အဖြစ် Download ရယူရန်</span>
+            <span id="download-btn-text">ပုံရိပ်အဖြစ် Download ရယူရန်</span>
           </button>
 
           <!-- Copy Image to Clipboard Button -->
@@ -150,12 +174,13 @@
           <!-- Top Mercado Libre Brand Header Banner -->
           <div class="bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 px-6 py-4 flex items-center justify-between border-b border-yellow-400/50">
             <div class="flex items-center space-x-2.5">
-              <!-- Logo Badge -->
-              <div class="p-1.5 bg-blue-900 rounded-xl shadow-md">
-                <svg class="w-5 h-5 text-yellow-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <!-- Default Logo Badge / Custom Image Target -->
+              <div id="logo-container" class="p-1.5 bg-blue-900 rounded-xl shadow-md overflow-hidden flex items-center justify-center">
+                <svg id="default-logo-icon" class="w-5 h-5 text-yellow-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M11 17l-5-5 5-5" />
                   <path d="M18 17l-5-5 5-5" />
                 </svg>
+                <img id="custom-logo-img" src="" class="w-6 h-6 object-cover hidden" alt="Logo">
               </div>
               <div class="flex flex-col">
                 <span class="text-base font-black text-blue-950 tracking-tighter leading-none">mercado</span>
@@ -199,7 +224,8 @@
                 <div class="w-6 h-6 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xs">
                   ID
                 </div>
-                <span id="card-userid" class="font-bold text-slate-800 text-xs tracking-tight">Estimado miembro (5653980706)</span>
+                <!-- ID စာသား ပါမလာသည့် ပြဿနာအတွက် ဖွဲ့စည်းပုံကို သီးသန့် ရှင်းလင်းထားသည် -->
+                <span class="font-bold text-slate-800 text-xs tracking-tight">Estimado miembro (<span id="card-userid">5653980706</span>)</span>
               </div>
 
               <!-- Notice Description -->
@@ -238,7 +264,7 @@
 
   </div>
 
-  <!-- JavaScript for Interactivity, Presets & Canvas Operations -->
+  <!-- JavaScript for Interactivity, Image Upload & Canvas Operations -->
   <script>
     const inputTitle = document.getElementById('input-title');
     const inputAlertTitle = document.getElementById('input-alert-title');
@@ -246,9 +272,12 @@
     const inputUserid = document.getElementById('input-userid');
     const inputMessage = document.getElementById('input-message');
     const inputBtn = document.getElementById('input-btn');
+    const inputLogo = document.getElementById('input-logo');
+
     const selectTheme = document.getElementById('select-theme');
     const selectPreset = document.getElementById('select-preset');
     const selectBg = document.getElementById('select-bg');
+    const selectFormat = document.getElementById('select-format');
     const selectScale = document.getElementById('select-scale');
 
     const cardTitle = document.getElementById('card-title');
@@ -261,9 +290,14 @@
     const alertIcon = document.getElementById('alert-icon');
     const exportCard = document.getElementById('export-card');
     const ambientLight = document.getElementById('ambient-light');
-    
+
+    const defaultLogoIcon = document.getElementById('default-logo-icon');
+    const customLogoImg = document.getElementById('custom-logo-img');
+
     const downloadBtn = document.getElementById('download-btn');
     const copyBtn = document.getElementById('copy-btn');
+    const saveDraftBtn = document.getElementById('save-draft-btn');
+    const loadDraftBtn = document.getElementById('load-draft-btn');
 
     // Preset Data Store
     const presets = {
@@ -296,15 +330,18 @@
       }
     };
 
-    // Apply Form Data to Live Card Preview
+    // Apply Form Data to Live Card Preview (Direct DOM Sync)
     function updateCard() {
-      cardTitle.textContent = inputTitle.value;
-      cardAlertTitle.textContent = inputAlertTitle.value;
-      cardAlertSub.textContent = inputAlertSub.value;
-      cardUserid.textContent = `Estimado miembro (${inputUserid.value})`;
-      cardMessage.textContent = inputMessage.value;
-      cardBtn.textContent = inputBtn.value;
+      cardTitle.innerText = inputTitle.value;
+      cardAlertTitle.innerText = inputAlertTitle.value;
+      cardAlertSub.innerText = inputAlertSub.value;
+      cardUserid.innerText = inputUserid.value;
+      cardMessage.innerText = inputMessage.value;
+      cardBtn.innerText = inputBtn.value;
     }
+
+    // Initial Sync
+    updateCard();
 
     // Live Text Binding Events
     inputTitle.addEventListener('input', updateCard);
@@ -313,6 +350,20 @@
     inputUserid.addEventListener('input', updateCard);
     inputMessage.addEventListener('input', updateCard);
     inputBtn.addEventListener('input', updateCard);
+
+    // Custom Logo File Reader
+    inputLogo.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          customLogoImg.src = evt.target.result;
+          customLogoImg.classList.remove('hidden');
+          defaultLogoIcon.classList.add('hidden');
+        };
+        reader.readAsDataURL(file);
+      }
+    });
 
     // Theme Switcher Function
     function applyTheme(theme) {
@@ -368,27 +419,70 @@
       }
     });
 
-    // Generate Canvas Helper
+    // LocalStorage Save & Load Logic
+    saveDraftBtn.addEventListener('click', () => {
+      const currentData = {
+        title: inputTitle.value,
+        alertTitle: inputAlertTitle.value,
+        alertSub: inputAlertSub.value,
+        userId: inputUserid.value,
+        message: inputMessage.value,
+        btn: inputBtn.value,
+        theme: selectTheme.value
+      };
+      localStorage.setItem('card_customizer_draft', JSON.stringify(currentData));
+      alert("လက်ရှိ ရေးသားချက်များကို မူကြမ်းအဖြစ် အောင်မြင်စွာ သိမ်းဆည်းပြီးပါပြီ!");
+    });
+
+    loadDraftBtn.addEventListener('click', () => {
+      const saved = localStorage.getItem('card_customizer_draft');
+      if (saved) {
+        const data = JSON.parse(saved);
+        inputTitle.value = data.title;
+        inputAlertTitle.value = data.alertTitle;
+        inputAlertSub.value = data.alertSub;
+        inputUserid.value = data.userId;
+        inputMessage.value = data.message;
+        inputBtn.value = data.btn;
+        applyTheme(data.theme);
+        updateCard();
+        alert("သိမ်းဆည်းထားသော မူကြမ်းအား ပြန်လည် ဆွဲယူပြီးပါပြီ!");
+      } else {
+        alert("သိမ်းဆည်းထားသော မူကြမ်း မရှိသေးပါ!");
+      }
+    });
+
+    // Generate Canvas Helper (Force DOM Sync Before Render)
     async function generateCanvas() {
+      // 1. Force Text Update
+      updateCard();
+      
+      // 2. Allow Browser to Render Cycle Complete
+      await new Promise(resolve => setTimeout(resolve, 50));
+
       const scale = parseFloat(selectScale.value) || 2;
       return await html2canvas(exportCard, {
         scale: scale,
         useCORS: true,
-        backgroundColor: null
+        allowTaint: true,
+        backgroundColor: selectBg.value === 'transparent' ? null : undefined
       });
     }
 
-    // Download Card as PNG Image
+    // Download Card Image
     downloadBtn.addEventListener('click', async () => {
       try {
         downloadBtn.disabled = true;
         downloadBtn.innerText = "ပုံရိပ်ထုတ်ယူနေသည်...";
 
+        const format = selectFormat.value;
         const canvas = await generateCanvas();
-        const image = canvas.toDataURL("image/png");
+        const mimeType = format === 'jpeg' ? 'image/jpeg' : 'image/png';
+        const image = canvas.toDataURL(mimeType, 0.95);
+        
         const link = document.createElement('a');
         link.href = image;
-        link.download = `MercadoLibre_Notice_${inputUserid.value || 'card'}.png`;
+        link.download = `MercadoLibre_Notice_${inputUserid.value || 'card'}.${format}`;
         link.click();
       } catch (err) {
         console.error(err);
@@ -399,7 +493,7 @@
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
           </svg>
-          <span>PNG ပုံရိပ်အဖြစ် Download ရယူရန်</span>
+          <span>ပုံရိပ်အဖြစ် Download ရယူရန်</span>
         `;
       }
     });
@@ -428,12 +522,12 @@
             copyBtn.disabled = false;
             copyBtn.innerHTML = `
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 012-2h2a2 2 0 012-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
               </svg>
               <span>Clipboard သို့ Direct Copy ကူးရန်</span>
             `;
           }
-        });
+        }, 'image/png');
       } catch (err) {
         console.error(err);
         copyBtn.disabled = false;
