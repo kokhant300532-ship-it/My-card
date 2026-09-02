@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mercado Libre - Dynamic Card Customizer Pro</title>
-  <!-- Tailwind CSS -->
+  <title>Mercado Libre - Dynamic Card Customizer Pro (Real-time Sync)</title>
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- html2canvas Library for Image Export -->
+  <!-- html2canvas Library for High Quality Image Export -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
@@ -17,10 +17,10 @@
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen p-4 md:p-8 flex flex-col items-center justify-center">
 
-  <div class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+  <div class="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
     
     <!-- Left Column: Customization Controls Panel -->
-    <div class="lg:col-span-5 bg-slate-900 border border-slate-800 p-6 rounded-3xl shadow-xl space-y-5">
+    <div class="lg:col-span-4 bg-slate-900 border border-slate-800 p-6 rounded-3xl shadow-xl space-y-5">
       <div class="border-b border-slate-800 pb-3 flex items-center justify-between">
         <div>
           <h1 class="text-xl font-bold text-amber-400">Card Design Customizer Pro</h1>
@@ -130,10 +130,10 @@
 
         <!-- LocalStorage Save/Load Draft Buttons -->
         <div class="grid grid-cols-2 gap-3 pt-2">
-          <button id="save-draft-btn" class="w-full py-2 px-3 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-slate-700 transition">
+          <button id="save-draft-btn" type="button" class="w-full py-2 px-3 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-slate-700 transition">
             💾 မူကြမ်း သိမ်းမည် (Save)
           </button>
-          <button id="load-draft-btn" class="w-full py-2 px-3 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-slate-700 transition">
+          <button id="load-draft-btn" type="button" class="w-full py-2 px-3 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-slate-700 transition">
             📂 မူကြမ်း ပြန်ယူမည် (Load)
           </button>
         </div>
@@ -141,7 +141,7 @@
         <!-- Action Buttons -->
         <div class="pt-2 space-y-2">
           <!-- Download Button -->
-          <button id="download-btn" class="w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition active:scale-95">
+          <button id="download-btn" type="button" class="w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition active:scale-95">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
             </svg>
@@ -149,9 +149,9 @@
           </button>
 
           <!-- Copy Image to Clipboard Button -->
-          <button id="copy-btn" class="w-full flex items-center justify-center space-x-2 bg-slate-800 hover:bg-slate-700 text-amber-400 font-bold py-2.5 px-4 rounded-xl border border-slate-700 transition active:scale-95">
+          <button id="copy-btn" type="button" class="w-full flex items-center justify-center space-x-2 bg-slate-800 hover:bg-slate-700 text-amber-400 font-bold py-2.5 px-4 rounded-xl border border-slate-700 transition active:scale-95">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
             </svg>
             <span>Clipboard သို့ Direct Copy ကူးရန်</span>
           </button>
@@ -160,21 +160,21 @@
       </div>
     </div>
 
-    <!-- Right Column: Live Preview Card Display -->
-    <div class="lg:col-span-7 flex flex-col items-center justify-center w-full">
-      <p class="text-xs font-semibold text-slate-400 mb-3 tracking-wider uppercase">Live Preview</p>
+    <!-- Right Column: Horizontal Landscape Live Preview Card Display -->
+    <div class="lg:col-span-8 flex flex-col items-center justify-center w-full sticky top-8">
+      <p class="text-xs font-semibold text-slate-400 mb-3 tracking-wider uppercase">Live Preview (Landscape Layout - Real-time Sync)</p>
 
       <!-- Outer Glow Container (Export Canvas Target) -->
-      <div id="export-card" class="relative w-full max-w-md p-4 bg-slate-950 rounded-[36px] transition-colors duration-300">
+      <div id="export-card" class="relative w-full p-4 bg-slate-950 rounded-[32px] transition-colors duration-300">
         <!-- Ambient Light Effect -->
-        <div id="ambient-light" class="absolute inset-2 bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-300 rounded-[32px] blur-2xl opacity-25"></div>
+        <div id="ambient-light" class="absolute inset-2 bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-300 rounded-[28px] blur-2xl opacity-25"></div>
 
         <!-- Main Card Body -->
-        <div class="relative bg-white rounded-[28px] shadow-2xl overflow-hidden border border-slate-100">
+        <div class="relative bg-white rounded-[24px] shadow-2xl overflow-hidden border border-slate-100 flex flex-col justify-between">
           
           <!-- Top Mercado Libre Brand Header Banner -->
-          <div class="bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 px-6 py-4 flex items-center justify-between border-b border-yellow-400/50">
-            <div class="flex items-center space-x-2.5">
+          <div class="bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 px-6 py-3.5 flex items-center justify-between border-b border-yellow-400/50">
+            <div class="flex items-center space-x-3">
               <!-- Default Logo Badge / Custom Image Target -->
               <div id="logo-container" class="p-1.5 bg-blue-900 rounded-xl shadow-md overflow-hidden flex items-center justify-center">
                 <svg id="default-logo-icon" class="w-5 h-5 text-yellow-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -183,72 +183,83 @@
                 </svg>
                 <img id="custom-logo-img" src="" class="w-6 h-6 object-cover hidden" alt="Logo">
               </div>
-              <div class="flex flex-col">
-                <span class="text-base font-black text-blue-950 tracking-tighter leading-none">mercado</span>
-                <span class="text-base font-black text-blue-950 tracking-tighter leading-none">libre</span>
+              <div class="flex items-center space-x-1.5">
+                <span class="text-lg font-black text-blue-950 tracking-tighter leading-none">mercado</span>
+                <span class="text-lg font-black text-blue-950 tracking-tighter leading-none">libre</span>
               </div>
             </div>
 
-            <div class="flex items-center space-x-1.5 bg-blue-950/10 backdrop-blur-md px-3 py-1 rounded-full border border-blue-950/10">
-              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span class="text-[11px] font-extrabold text-blue-950 uppercase tracking-wide">Sistema Oficial</span>
+            <div class="flex items-center space-x-4">
+              <h2 id="card-title" class="text-base font-extrabold text-blue-950 tracking-tight hidden sm:block">
+                Indicaciones Del Sistema
+              </h2>
+              <div class="flex items-center space-x-1.5 bg-blue-950/10 backdrop-blur-md px-3 py-1 rounded-full border border-blue-950/10">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span class="text-[11px] font-extrabold text-blue-950 uppercase tracking-wide">Sistema Oficial</span>
+              </div>
             </div>
           </div>
 
-          <div class="p-6">
-            <!-- Main Title -->
-            <h2 id="card-title" class="text-2xl font-extrabold text-slate-900 tracking-tight text-center mb-5">
-              Indicaciones Del Sistema
-            </h2>
-
-            <!-- Alert Notification Card -->
-            <div id="alert-box" class="mb-5 rounded-2xl bg-gradient-to-r from-red-500/10 via-rose-500/5 to-red-500/10 p-4 border border-red-500/20 shadow-sm flex items-start space-x-3.5">
-              <div id="alert-icon" class="shrink-0 p-2.5 bg-red-500 text-white rounded-2xl shadow-lg shadow-red-500/30 mt-0.5">
-                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                </svg>
-              </div>
-              <div>
-                <h3 id="card-alert-title" class="font-extrabold text-sm text-red-950 tracking-tight mb-0.5">
-                  Error en la cuenta bancaria
-                </h3>
-                <p id="card-alert-sub" class="text-xs font-semibold text-red-700/90 leading-tight">
-                  Se ha detectado un error en la información de su cuenta bancaria. Por favor, verifique sus datos para continuar.
-                </p>
-              </div>
-            </div>
-
-            <!-- User Data & Message Panel -->
-            <div class="mb-6 rounded-2xl bg-slate-50/80 p-4 border border-slate-200/80 space-y-3">
-              <!-- User Info Chip -->
-              <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-xl bg-white border border-slate-200 shadow-2xs">
-                <div class="w-6 h-6 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xs">
-                  ID
-                </div>
-                <span id="card-userid" class="font-bold text-slate-800 text-xs tracking-tight">Estimado miembro (5653980706)</span>
-              </div>
-
-              <!-- Notice Description -->
-              <p id="card-message" class="text-slate-600 text-xs leading-relaxed font-medium">
-                Mensaje detallado. Sus fondos han sido devueltos a la tienda. Debido a que la información de retiro es incorrecta, su cuenta del centro comercial se encuentra actualmente bajo control de riesgos y no se pueden realizar retiros.
-              </p>
-            </div>
-
-            <!-- High-Impact Action Button -->
-            <button class="w-full relative group overflow-hidden rounded-2xl bg-yellow-400 p-0.5 shadow-xl shadow-yellow-400/40 active:scale-[0.98] transition-all duration-200">
-              <div class="w-full bg-gradient-to-r from-yellow-400 via-amber-300 to-yellow-400 py-4 rounded-[14px] text-center font-black text-blue-950 uppercase tracking-wider text-sm flex items-center justify-center space-x-2 group-hover:brightness-105 transition">
-                <span id="card-btn">Retirarse exitosa</span>
-                <div class="p-1 rounded-lg bg-blue-950/10">
-                  <svg class="w-4 h-4 text-blue-950 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          <!-- Main Content Grid (2 Columns Layout for Wide Aspect Ratio) -->
+          <div class="p-6 grid grid-cols-1 md:grid-cols-12 gap-5 items-stretch">
+            
+            <!-- Left Side: Alert Notice Section -->
+            <div class="md:col-span-5 flex flex-col justify-between">
+              <!-- Alert Notification Card -->
+              <div id="alert-box" class="h-full rounded-2xl bg-gradient-to-r from-red-500/10 via-rose-500/5 to-red-500/10 p-4 border border-red-500/20 shadow-sm flex items-start space-x-3.5">
+                <div id="alert-icon" class="shrink-0 p-2.5 bg-red-500 text-white rounded-2xl shadow-lg shadow-red-500/30 mt-0.5">
+                  <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                   </svg>
                 </div>
+                <div>
+                  <h3 id="card-alert-title" class="font-extrabold text-sm text-red-950 tracking-tight mb-1">
+                    Error en la cuenta bancaria
+                  </h3>
+                  <p id="card-alert-sub" class="text-xs font-semibold text-red-700/90 leading-normal">
+                    Se ha detectado un error en la información de su cuenta bancaria. Por favor, verifique sus datos para continuar.
+                  </p>
+                </div>
               </div>
-            </button>
+            </div>
+
+            <!-- Right Side: User Message & Action Button Section -->
+            <div class="md:col-span-7 flex flex-col justify-between space-y-4">
+              <!-- User Data & Message Panel -->
+              <div class="rounded-2xl bg-slate-50/80 p-4 border border-slate-200/80 space-y-2.5 h-full flex flex-col justify-center">
+                <!-- User Info Chip -->
+                <div>
+                  <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-xl bg-white border border-slate-200 shadow-2xs">
+                    <div class="w-5 h-5 rounded-md bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-[10px]">
+                      ID
+                    </div>
+                    <span id="card-userid" class="font-bold text-slate-800 text-xs tracking-tight">Estimado miembro (5653980706)</span>
+                  </div>
+                </div>
+
+                <!-- Notice Description -->
+                <p id="card-message" class="text-slate-600 text-xs leading-relaxed font-medium">
+                  Mensaje detallado. Sus fondos han sido devueltos a la tienda. Debido a que la información de retiro es incorrecta, su cuenta del centro comercial se encuentra actualmente bajo control de riesgos y no se pueden realizar retiros.
+                </p>
+              </div>
+
+              <!-- High-Impact Action Button -->
+              <button type="button" class="w-full relative group overflow-hidden rounded-xl bg-yellow-400 p-0.5 shadow-lg shadow-yellow-400/30 active:scale-[0.99] transition-all duration-200">
+                <div class="w-full bg-gradient-to-r from-yellow-400 via-amber-300 to-yellow-400 py-3 rounded-[10px] text-center font-black text-blue-950 uppercase tracking-wider text-xs flex items-center justify-center space-x-2 group-hover:brightness-105 transition">
+                  <span id="card-btn">Retirarse exitosa</span>
+                  <div class="p-1 rounded-lg bg-blue-950/10">
+                    <svg class="w-3.5 h-3.5 text-blue-950 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </div>
+                </div>
+              </button>
+            </div>
+
           </div>
 
           <!-- Footer Info Bar -->
-          <div class="bg-slate-50 px-6 py-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-semibold text-slate-400">
+          <div class="bg-slate-50 px-6 py-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] font-semibold text-slate-400">
             <span>Seguridad Mercado Libre</span>
             <span class="flex items-center gap-1">
               <svg class="w-3.5 h-3.5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
@@ -264,8 +275,9 @@
 
   </div>
 
-  <!-- JavaScript for Interactivity, Image Upload & Canvas Operations -->
+  <!-- JavaScript for Interactivity, Real-Time Sync, Image Upload & Canvas Operations -->
   <script>
+    // Elements Selectors
     const inputTitle = document.getElementById('input-title');
     const inputAlertTitle = document.getElementById('input-alert-title');
     const inputAlertSub = document.getElementById('input-alert-sub');
@@ -339,23 +351,23 @@
       }
     };
 
-    // Apply Form Data to Live Card Preview
+    // Real-time Automatic Synchronization Function
     function updateCard() {
-      cardTitle.textContent = inputTitle.value;
-      cardAlertTitle.textContent = inputAlertTitle.value;
-      cardAlertSub.textContent = inputAlertSub.value;
-      cardUserid.textContent = `Estimado miembro (${inputUserid.value})`;
-      cardMessage.textContent = inputMessage.value;
-      cardBtn.textContent = inputBtn.value;
+      cardTitle.textContent = inputTitle.value || '';
+      cardAlertTitle.textContent = inputAlertTitle.value || '';
+      cardAlertSub.textContent = inputAlertSub.value || '';
+      cardUserid.textContent = `Estimado miembro (${inputUserid.value || ''})`;
+      cardMessage.textContent = inputMessage.value || '';
+      cardBtn.textContent = inputBtn.value || '';
     }
 
-    // Live Text Binding Events
-    inputTitle.addEventListener('input', updateCard);
-    inputAlertTitle.addEventListener('input', updateCard);
-    inputAlertSub.addEventListener('input', updateCard);
-    inputUserid.addEventListener('input', updateCard);
-    inputMessage.addEventListener('input', updateCard);
-    inputBtn.addEventListener('input', updateCard);
+    // Comprehensive Event Listeners for Instant Real-Time Synchronization
+    const inputsToSync = [inputTitle, inputAlertTitle, inputAlertSub, inputUserid, inputMessage, inputBtn];
+    inputsToSync.forEach(input => {
+      ['input', 'keyup', 'change', 'paste'].forEach(eventType => {
+        input.addEventListener(eventType, updateCard);
+      });
+    });
 
     // Custom Logo File Reader
     inputLogo.addEventListener('change', (e) => {
@@ -375,26 +387,26 @@
     function applyTheme(theme) {
       selectTheme.value = theme;
       if (theme === 'red') {
-        alertBox.className = "mb-5 rounded-2xl bg-gradient-to-r from-red-500/10 via-rose-500/5 to-red-500/10 p-4 border border-red-500/20 shadow-sm flex items-start space-x-3.5";
+        alertBox.className = "h-full rounded-2xl bg-gradient-to-r from-red-500/10 via-rose-500/5 to-red-500/10 p-4 border border-red-500/20 shadow-sm flex items-start space-x-3.5";
         alertIcon.className = "shrink-0 p-2.5 bg-red-500 text-white rounded-2xl shadow-lg shadow-red-500/30 mt-0.5";
-        cardAlertTitle.className = "font-extrabold text-sm text-red-950 tracking-tight mb-0.5";
-        cardAlertSub.className = "text-xs font-semibold text-red-700/90 leading-tight";
+        cardAlertTitle.className = "font-extrabold text-sm text-red-950 tracking-tight mb-1";
+        cardAlertSub.className = "text-xs font-semibold text-red-700/90 leading-normal";
       } else if (theme === 'amber') {
-        alertBox.className = "mb-5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-yellow-500/5 to-amber-500/10 p-4 border border-amber-500/20 shadow-sm flex items-start space-x-3.5";
+        alertBox.className = "h-full rounded-2xl bg-gradient-to-r from-amber-500/10 via-yellow-500/5 to-amber-500/10 p-4 border border-amber-500/20 shadow-sm flex items-start space-x-3.5";
         alertIcon.className = "shrink-0 p-2.5 bg-amber-500 text-white rounded-2xl shadow-lg shadow-amber-500/30 mt-0.5";
-        cardAlertTitle.className = "font-extrabold text-sm text-amber-950 tracking-tight mb-0.5";
-        cardAlertSub.className = "text-xs font-semibold text-amber-700/90 leading-tight";
+        cardAlertTitle.className = "font-extrabold text-sm text-amber-950 tracking-tight mb-1";
+        cardAlertSub.className = "text-xs font-semibold text-amber-700/90 leading-normal";
       } else if (theme === 'emerald') {
-        alertBox.className = "mb-5 rounded-2xl bg-gradient-to-r from-emerald-500/10 via-teal-500/5 to-emerald-500/10 p-4 border border-emerald-500/20 shadow-sm flex items-start space-x-3.5";
+        alertBox.className = "h-full rounded-2xl bg-gradient-to-r from-emerald-500/10 via-teal-500/5 to-emerald-500/10 p-4 border border-emerald-500/20 shadow-sm flex items-start space-x-3.5";
         alertIcon.className = "shrink-0 p-2.5 bg-emerald-500 text-white rounded-2xl shadow-lg shadow-emerald-500/30 mt-0.5";
-        cardAlertTitle.className = "font-extrabold text-sm text-emerald-950 tracking-tight mb-0.5";
-        cardAlertSub.className = "text-xs font-semibold text-emerald-700/90 leading-tight";
+        cardAlertTitle.className = "font-extrabold text-sm text-emerald-950 tracking-tight mb-1";
+        cardAlertSub.className = "text-xs font-semibold text-emerald-700/90 leading-normal";
       }
     }
 
     selectTheme.addEventListener('change', (e) => applyTheme(e.target.value));
 
-    // Preset Selection Handler
+    // Preset Selection Handler (Automatically Triggers Live Preview Update)
     selectPreset.addEventListener('change', (e) => {
       const key = e.target.value;
       if (presets[key]) {
@@ -406,7 +418,7 @@
         inputMessage.value = p.message;
         inputBtn.value = p.btn;
         applyTheme(p.theme);
-        updateCard();
+        updateCard(); // Trigger immediate sync
       }
     });
 
@@ -414,13 +426,13 @@
     selectBg.addEventListener('change', (e) => {
       const mode = e.target.value;
       if (mode === 'dark') {
-        exportCard.className = "relative w-full max-w-md p-4 bg-slate-950 rounded-[36px] transition-colors duration-300";
+        exportCard.className = "relative w-full p-4 bg-slate-950 rounded-[32px] transition-colors duration-300";
         ambientLight.style.display = "block";
       } else if (mode === 'light') {
-        exportCard.className = "relative w-full max-w-md p-4 bg-slate-200 rounded-[36px] transition-colors duration-300";
+        exportCard.className = "relative w-full p-4 bg-slate-200 rounded-[32px] transition-colors duration-300";
         ambientLight.style.display = "block";
       } else if (mode === 'transparent') {
-        exportCard.className = "relative w-full max-w-md p-4 bg-transparent rounded-[36px] transition-colors duration-300";
+        exportCard.className = "relative w-full p-4 bg-transparent rounded-[32px] transition-colors duration-300";
         ambientLight.style.display = "none";
       }
     });
@@ -451,7 +463,7 @@
         inputMessage.value = data.message;
         inputBtn.value = data.btn;
         applyTheme(data.theme);
-        updateCard();
+        updateCard(); // Trigger immediate sync after loading
         alert("သိမ်းဆည်းထားသော မူကြမ်းအား ပြန်လည် ဆွဲယူပြီးပါပြီ!");
       } else {
         alert("သိမ်းဆည်းထားသော မူကြမ်း မရှိသေးပါ!");
@@ -521,7 +533,7 @@
             copyBtn.disabled = false;
             copyBtn.innerHTML = `
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
               </svg>
               <span>Clipboard သို့ Direct Copy ကူးရန်</span>
             `;
@@ -532,6 +544,9 @@
         copyBtn.disabled = false;
       }
     });
+
+    // Initial Sync on Page Load
+    updateCard();
   </script>
 </body>
 </html>
